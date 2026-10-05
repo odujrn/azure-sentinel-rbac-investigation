@@ -116,9 +116,13 @@ I enabled Microsoft Sentinel on the Log Analytics workspace. The workspace recei
 
 I installed the Microsoft Sentinel Azure Activity solution. The solution provided the data connector, workbooks, analytics-rule templates, and hunting queries needed to monitor subscription-level Azure management activity.
 
+![Azure Activity solution installed](screenshots/05-azure-activity-solution-installed.png)
+
 ### 6. Azure Activity log ingestion
 
 I used Azure Policy with a remediation task to configure subscription activity-log streaming to the Log Analytics workspace.
+
+![Azure Activity policy assignment](screenshots/06-azure-activity-policy-assignment.png)
 
 A KQL query confirmed that Azure management events were successfully reaching the workspace.
 
@@ -159,6 +163,10 @@ Azure Activity recorded the operation as:
 ### 10. Detection and investigation
 
 Microsoft Sentinel generated a medium-severity security alert and created Incident 1.
+
+![Microsoft Sentinel alert generated](screenshots/13-sentinel-rbac-alert-generated.png)
+
+![Microsoft Sentinel incident created](screenshots/14-sentinel-rbac-incident-created.png)
 
 The investigation confirmed that:
 
