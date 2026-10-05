@@ -393,6 +393,29 @@ Redacted screenshots documenting the project are available in the [`screenshots`
 
 The complete investigation record is available in [`incident-report.md`](incident-report.md).
 
+## Cleanup and Cost Control
+
+After completing the investigation and preserving the project evidence, I removed the temporary Azure resources to prevent unnecessary charges and eliminate unused access.
+
+The cleanup included:
+
+- Removing the Contributor role assignment from the test managed identity
+- Deleting the user-assigned managed identity
+- Deleting the custom Microsoft Sentinel analytics rule
+- Removing the policy-managed identity's subscription-level permissions
+- Deleting the Azure Activity policy assignment
+- Deleting the subscription diagnostic setting
+- Deleting the Log Analytics workspace
+- Removing the Microsoft Sentinel solution
+- Deleting the lab resource group
+- Reviewing Azure Cost Management for remaining usage
+
+A final Azure CLI check returned `false` for the existence of `rg-sentinel-rbac-lab`, confirming that the resource group and its remaining resources were deleted.
+
+Azure Cost Management reported no cost for the project period after cleanup. The subscription-level budget was retained because it does not create usage charges and continues to provide protection against unexpected future spending.
+
+This cleanup demonstrated responsible cloud-resource lifecycle management, access revocation, and cost awareness.
+
 ## Lessons Learned
 
 This project demonstrated that cloud IAM monitoring involves more than detecting a role assignment. An analyst must determine who initiated the change, identify the affected identity and assigned privilege, evaluate the assignment scope, determine whether the activity was authorized, contain unnecessary access, verify the containment action, and document the final classification.
